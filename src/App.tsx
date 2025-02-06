@@ -73,11 +73,7 @@ function App() {
           ) : movieList && movieList.results.length > 0 ? (
             <ul>
               {movieList &&
-                movieList.results.map((movie) => (
-                  <p key={movie.id} className="text-white">
-                    {movie.title}
-                  </p>
-                ))}
+                movieList.results.map((movie) => <MovieCard movie={movie} />)}
             </ul>
           ) : (
             errorMessage
