@@ -9,7 +9,7 @@ export default function MovieCard({ movie }: { movie: Results }) {
     <div key={movie.id} className="movie-card">
       <img
         src={
-          poster_path ? `${API_BASE_IMAGE_URL}${poster_path}` : "/no-movie.png"
+          poster_path ? `${API_BASE_IMAGE_URL}${poster_path}` : "/no-poster.png"
         }
         alt="Movie Card"
       />

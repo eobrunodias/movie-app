@@ -6,22 +6,30 @@ import { MovieProps } from "./types/movie";
 import { useEffect, useState } from "react";
 import { API_BASE_URL, API_OPTIONS } from "./constants/api";
 
+import { useDebounce } from "react-use";
+
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [movieList, setMovieList] = useState<MovieProps | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [debounceSearchTerm, setDebounceSearchTerm] = useState<string>("");
+
+  // Debounce prevent making too many API request, waiting that user stop type in 500ms in this case
+  useDebounce(() => setDebounceSearchTerm(searchTerm), 500, [searchTerm]);
 
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    fetchMovies(debounceSearchTerm);
+  }, [debounceSearchTerm]);
 
-  async function fetchMovies(): Promise<void> {
+  async function fetchMovies(query: string = ""): Promise<void> {
     setIsLoading(true);
     setErrorMessage("");
 
     try {
-      const endpoint: string = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+      const endpoint: string = query
+        ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
+        : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
 
       const response = await fetch(endpoint, API_OPTIONS);
 
@@ -73,7 +81,9 @@ function App() {
           ) : movieList && movieList.results.length > 0 ? (
             <ul>
               {movieList &&
-                movieList.results.map((movie) => <MovieCard movie={movie} />)}
+                movieList.results.map((movie) => (
+                  <MovieCard key={movie.id} movie={movie} />
+                ))}
             </ul>
           ) : (
             errorMessage
