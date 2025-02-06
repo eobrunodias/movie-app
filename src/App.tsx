@@ -4,16 +4,21 @@ import Spinner from "./components/Spinner";
 import MovieCard from "./components/MovieCard";
 import { MovieProps } from "./types/movie";
 import { useEffect, useState } from "react";
-import { API_BASE_URL, API_OPTIONS } from "./constants/api";
+import { API_OPTIONS } from "./constants/api";
 
 import { useDebounce } from "react-use";
+import { updateSearchCount } from "./api/appwrite";
+import { getMovieEndpoint } from "./api/tmdb";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const [movieList, setMovieList] = useState<MovieProps | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [debounceSearchTerm, setDebounceSearchTerm] = useState<string>("");
+
+  const [movieList, setMovieList] = useState<MovieProps | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // const [trendingMovies, setTrendingMovies] = useState<MovieProps[]>([]);
 
   // Debounce prevent making too many API request, waiting that user stop type in 500ms in this case
   useDebounce(() => setDebounceSearchTerm(searchTerm), 500, [searchTerm]);
@@ -27,11 +32,7 @@ function App() {
     setErrorMessage("");
 
     try {
-      const endpoint: string = query
-        ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
-        : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
-
-      const response = await fetch(endpoint, API_OPTIONS);
+      const response = await fetch(getMovieEndpoint(query), API_OPTIONS);
 
       if (!response.ok) {
         throw new Error("Failed to fetch movies");
@@ -46,6 +47,10 @@ function App() {
       }
 
       setMovieList(data);
+
+      if (query && data.results.length > 0) {
+        await updateSearchCount(query, data.results[0]);
+      }
     } catch (error) {
       // "Internal client view error"
       console.error(`Error fetching movies: ${error}`);
