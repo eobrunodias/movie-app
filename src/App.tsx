@@ -1,48 +1,15 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 import Search from "./components/Search";
 import Spinner from "./components/Spinner";
-
-type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
-
-const API_KEY: string = import.meta.env.VITE_TMBD_API_KEY;
-const API_BASE_URL: string = "https://api.themoviedb.org/3";
-const API_OPTIONS: RequestInit = {
-  method: "GET" as HttpMethod,
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${API_KEY}`,
-  },
-};
-
-type Results = {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-};
-
-interface MovieType {
-  page: number;
-  results: Results[];
-  total_pages: number;
-  total_results: number;
-}
+import MovieCard from "./components/MovieCard";
+import { MovieProps } from "./types/movie";
+import { useEffect, useState } from "react";
+import { API_BASE_URL, API_OPTIONS } from "./constants/api";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [movieList, setMovieList] = useState<MovieType | null>(null);
+  const [movieList, setMovieList] = useState<MovieProps | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
