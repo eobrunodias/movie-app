@@ -1,21 +1,11 @@
-export interface News {
-  total: number;
-  documents: New[];
-}
-
-export interface New {
-  title: string;
-  description: string;
+export interface FilteredNews {
+  id?: string;
   content: string;
-  url: string;
+  description: string;
   image: string;
+  title: string;
+  url: string;
   publishedAt: string;
-  $id: string;
-  $createdAt: string;
-  $updatedAt: string;
-  $permissions: string[];
-  $databaseId: string;
-  $collectionId: string;
 }
 
 export interface Source {
