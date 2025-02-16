@@ -1,50 +1,121 @@
-# React + TypeScript + Vite
+![banner](./src/assets/banner.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
 
-Currently, two official plugins are available:
+  <div>
+    <img src="https://img.shields.io/badge/-React_JS-black?style=for-the-badge&logo=react&logoColor=61DAFB" alt="react.js" />
+    <img src="https://img.shields.io/badge/-React_Router-black?style=for-the-badge&logo=react-router&logoColor=CA4245" />
+    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4" alt="tailwind" />
+    <img src="https://img.shields.io/badge/-Axios-black?style=for-the-badge&logo=axios&logoColor=5A29E4" alt="axios" />
+    <img src="https://img.shields.io/badge/-Appwrite-black?style=for-the-badge&logo=appwrite&logoColor=FD366E" alt="appwrite" />
+  </div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<hr />
 
-## Expanding the ESLint configuration
+</div>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 📋 <a name="table">Table of Contents</a>
 
-- Configure the top-level `parserOptions` property like this:
+1. 📜 [About the project](#about)
+2. 🤖 [Introduction](#introduction)
+3. ⚙️ [Tech Stack](#tech-stack)
+4. 🔋 [Features](#features)
+5. 🤸 [Quick Start](#quick-start)
+6. 🤝 [Contributing](#contributing)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📜 <a name="about"> About the Project </a>
+
+ScrollNews is a news aggregation application built in React.js that fetches daily news updates from the API, stores them in database, and saves them in localStorage before displaying them on the screen. The application is designed to provide users with the latest news updates of api in a user-friendly and interactive manner.
+
+## <a name="tech-stack">⚙️ Tech Stack</a>
+
+- React.js
+- React Router
+- Axios
+- Appwrite
+- Tailwind CSS
+
+## <a name="features">🔋 Features</a>
+
+- [x] **News Search**: News is fetched daily from the API.
+- [x] **Search News**: Easily search for specific movies using a search function.
+- [x] **Infinite Scroll**: News scrolls continuously on the home page.
+- [x] **Favorites**: Users can save news as favorites, which are stored in localStorage.
+- [x] **Trending News Algorithm**: Displays trending news based on a dynamic algorithm.
+- [x] **Details Modal**: When clicking on a news item, a modal displays more information about it.
+- [x] **Modern UI/UX**: A sleek and user-friendly interface designed for a great experience.
+- [x] **Responsiveness**: Fully responsive design that works seamlessly across devices.
+
+### Soon
+
+- [ ] **Dark/Light Mode**: Switch between light and dark modes for a better user experience.
+
+## <a name="quick-start">🤸 Quick Start</a>
+
+Follow these steps to set up the project locally on your machine.
+
+**Prerequisites**
+
+Make sure you have the following installed on your machine:
+
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en)
+- [npm](https://www.npmjs.com/) (Node Package Manager)
+
+**Cloning the Repository**
+
+```bash
+git clone https://github.com/eobrunodias/scrollnews.git
+cd scrollnews
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+**Installation**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Install the project dependencies using npm:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
 ```
+
+**Set Up Environment Variables**
+
+Create a new file named `.env.local` in the root of your project and add the following content:
+
+```env
+VITE_API_BASE_URL=
+VITE_API_KEY=
+
+VITE_APPWRITE_PROJECT_ID=
+VITE_APPWRITE_DATABASE_ID=
+
+VITE_APPWRITE_CONFIG_COLLECTION_ID=
+VITE_APPWRITE_ARTICLES_COLLECTION_ID=
+
+VITE_NEWS_UPDATE_CONFIG_ID=
+```
+
+Replace the placeholder values with your actual **[GNews API](https://gnews.io/)** and **[Appwrite](https://appwrite.io/)**. You can obtain these credentials by signing up on the [GNews](https://gnews.io/) and creating a new project on the [Appwrite](https://appwrite.io/)
+
+**Running the Project**
+
+```bash
+npm run dev
+```
+
+open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
+
+## 🤝 Contributing
+
+_Where can I improve?_
+
+We welcome contributions! Whether it's improvements, bug fixes, or new features, feel free to contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/new-feature`).
+3. Make your changes and commit them (`git commit -am 'Add new feature'`).
+4. Push your changes (`git push origin feature/new-feature`).
+5. Open a Pull Request on GitHub.
+
+---
+
+![banner](./src/assets/banner-bottom.png)
