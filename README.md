@@ -7,6 +7,7 @@
     <img src="https://img.shields.io/badge/-React_Router-black?style=for-the-badge&logo=react-router&logoColor=CA4245" />
     <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4" alt="tailwind" />
     <img src="https://img.shields.io/badge/-Axios-black?style=for-the-badge&logo=axios&logoColor=5A29E4" alt="axios" />
+    <img src="https://img.shields.io/badge/-Express-black?style=for-the-badge&logo=express&logoColor=fff" alt="express.js" />
     <img src="https://img.shields.io/badge/-Appwrite-black?style=for-the-badge&logo=appwrite&logoColor=FD366E" alt="appwrite" />
   </div>
 
@@ -77,24 +78,39 @@ Install the project dependencies using npm:
 npm install
 ```
 
-**Set Up Environment Variables**
+**Set Up Environment SERVER Variables**
+
+Create a new file named `.env` inside the `/server` folder of your project and add the following content:
+
+```env.local
+API_BASE_URL=
+API_KEY=
+```
+
+Replace the placeholder values with your actual **[GNews API](https://gnews.io/)**. You can obtain these credentials by signing up on the [GNews](https://gnews.io/).
+
+**Running the Server**
+
+```bash
+npm run server
+```
+
+**Set Up Environment VITE Variables**
 
 Create a new file named `.env.local` in the root of your project and add the following content:
 
-```env
-VITE_API_BASE_URL=
-VITE_API_KEY=
-
+```env.local
 VITE_APPWRITE_PROJECT_ID=
 VITE_APPWRITE_DATABASE_ID=
 
 VITE_APPWRITE_CONFIG_COLLECTION_ID=
 VITE_APPWRITE_ARTICLES_COLLECTION_ID=
+VITE_APPWRITE_TRENDING_COLLECTION_ID=
 
 VITE_NEWS_UPDATE_CONFIG_ID=
 ```
 
-Replace the placeholder values with your actual **[GNews API](https://gnews.io/)** and **[Appwrite](https://appwrite.io/)**. You can obtain these credentials by signing up on the [GNews](https://gnews.io/) and creating a new project on the [Appwrite](https://appwrite.io/)
+Replace the placeholder values with your actual **[Appwrite](https://appwrite.io/)**. You can creating a new project on the [Appwrite](https://appwrite.io/)
 
 **Running the Project**
 
@@ -104,7 +120,7 @@ npm run dev
 
 open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
 
-## 🤝 Contributing
+## <a name="contributing">🤝 Contributing</a>
 
 _Where can I improve?_
 
