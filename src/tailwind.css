@@ -21,6 +21,8 @@
   --color-borderwhite: rgba(255, 255, 255, 0.2);
   --color-colorfontbutton: rgba(255, 255, 255, 0.5);
 
+  --color-bg-modal: rgba(30, 40, 55, 0.95);
+
   --font-inter-sans: Inter, sans-serif;
   --font-sora-sans: Sora, sans-serif;
 
@@ -32,5 +34,44 @@
     font-family: "Inter", serif;
     font-optical-sizing: auto;
     background-color: var(--color-gray-600);
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-blue-500);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--color-gray-900);
+  }
+}
+
+@layer utilities {
+  @keyframes scrollVertical {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  .paused {
+    animation-play-state: paused;
+  }
+  .running {
+    animation-play-state: running;
+  }
+
+  .shadow-card {
+    box-shadow: 0px 11px 56px -9px rgba(0, 0, 0, 0.41);
+  }
+
+  .animate-scroll {
+    animation: scrollVertical 30s linear infinite alternate-reverse;
   }
 }
