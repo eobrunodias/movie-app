@@ -5,23 +5,54 @@ import {
   ArrowRightToLineIcon,
   Heart,
   House,
-  SunIcon,
   TrendingUp,
 } from "lucide-react";
 import Search from "../Search";
 import { useEffect, useState } from "react";
+import { useDebounce } from "react-use";
+import { FilteredNews } from "../../types/appwrite";
+import { saveTrending } from "../../data/services/appwrite/collections/trending";
+import { useSearch } from "../../hooks/useSearch";
 
 export default function Sidebar() {
   const { pathname } = useLocation();
 
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 890);
+  const { searchTerm, setSearchTerm } = useSearch();
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>("");
+
+  useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
+
+  async function handleSearch(query: string) {
+    const data = localStorage.getItem("storedNews");
+
+    if (data) {
+      const dataParsed: FilteredNews[] = JSON.parse(data);
+
+      if (query === "") return;
+
+      const filteredNews = dataParsed.filter(
+        (news) =>
+          news.title.toLowerCase().includes(query.toLowerCase()) ||
+          news.description.toLowerCase().includes(query.toLowerCase())
+      );
+
+      if (filteredNews.length > 0) {
+        await saveTrending(filteredNews[0]);
+      }
+    }
+
+    return;
+  }
+
+  useEffect(() => {
+    handleSearch(debouncedSearchTerm);
+  }, [debouncedSearchTerm]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 890);
-
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -50,14 +81,10 @@ export default function Sidebar() {
             className={`flex sm:items-center sm:w-full sm:mt-6 sm:mb-12
               ${
                 isOpen
-                  ? "sm:justify-between "
+                  ? "sm:justify-end"
                   : "sm:flex-col-reverse sm:gap-6 sm:justify-center "
               }`}
           >
-            <SunIcon
-              size="30px"
-              className="text-amber-400 sm:cursor-pointer sm:hover:scale-115 sm:block hidden"
-            />
             {isOpen ? (
               <ArrowLeftToLineIcon
                 size="30px"
@@ -77,13 +104,20 @@ export default function Sidebar() {
             <hr className="sm:text-borderwhite sm:w-[50px] sm:rounded-[10px]" />
           )}
 
-          {!isMobile && isOpen && <Search />}
+          {!isMobile && isOpen && (
+            <Search
+              className={`${
+                pathname !== "/"
+                  ? "cursor-not-allowed opacity-30"
+                  : "cursor-pointer"
+              }`}
+              readOnly={pathname !== "/"}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
+          )}
 
           <nav className="sm:bg-gray-700 w-screen sm:border-0 flex items-center justify-around sm:flex-col sm:w-full sm:max-w-[266px] sm:mt-12 sm:items-center bg-gray-600 border-1 rounded-[10px] min-h-[58px] border-colorfontbutton max-w-[548px] flex-1 mx-2 sm:mx-0">
-            <SunIcon
-              size="30px"
-              className="text-amber-400 sm:cursor-pointer sm:hover:scale-115 block sm:hidden"
-            />
             {navLinks.map(({ to, label, icon }) => (
               <Link
                 key={to}
