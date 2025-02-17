@@ -8,21 +8,15 @@ export default function AppRoutes() {
     <Routes>
       <Route
         path="/"
-        element={
-          <Home className="px-[50px] overflow-y-auto pt-[24px] mb-[24px]" />
-        }
+        element={<Home className="px-[50px] overflow-y-auto py-[24px]" />}
       />
       <Route
         path="/favorites"
-        element={
-          <Favorites className="px-[50px] overflow-y-auto pt-[24px] mb-[24px]" />
-        }
+        element={<Favorites className="px-[50px] overflow-y-auto py-[24px]" />}
       ></Route>
       <Route
         path="/trending"
-        element={
-          <Trending className="px-[50px] overflow-y-auto pt-[24px] mb-[24px]" />
-        }
+        element={<Trending className="px-[50px] overflow-y-auto py-[24px]" />}
       ></Route>
     </Routes>
   );
