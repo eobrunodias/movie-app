@@ -16,9 +16,9 @@ export default function Modal({ isOpen, newsData, onClose }: ModalProps) {
   if (!isOpen || !newsData) return null;
 
   return (
-    <div className="fixed inset-0 bg-bg-modal bg-opacity-50 flex items-center justify-center ">
+    <div className="fixed inset-0 bg-bg-modal bg-opacity-50 flex items-center justify-center z-1">
       <div className="bg-bg-modal text-white rounded-lg w-3/4 sm:w-1/2 max-h-[80vh] overflow-hidden relative border-1 border-borderwhite">
-        <div className="rounded-full bg-gray-900 w-13 h-13 absolute top-5 right-5 z-10 flex items-center justify-center">
+        <div className="rounded-full bg-gray-900 w-13 h-13 absolute top-5 right-5 flex items-center justify-center z-2">
           <XCircleIcon
             onClick={onClose}
             className="text-red cursor-pointer"

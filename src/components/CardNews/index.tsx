@@ -108,7 +108,7 @@ export default function CardNews({
 
   return (
     <div
-      className={`card ${cardSize} shadow-card rounded-2xl border-1 border-borderwhite  w-full sm:max-w-[463px] hover:scale-103`}
+      className={`card ${cardSize} shadow-card rounded-2xl border-1 border-borderwhite w-full sm:max-w-[463px] hover:scale-103`}
     >
       <div className={`${className ?? ""} ${cardPoster} relative rounded-2xl`}>
         {isTrending ? (
