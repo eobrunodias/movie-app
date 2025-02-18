@@ -4,7 +4,7 @@ import { FilteredNews } from "../../types/appwrite";
 
 export async function fetchNews(): Promise<FilteredNews[] | undefined> {
   try {
-    const response: ApiResponse = await axios.get("/news");
+    const response: ApiResponse = await axios.get("/api/news");
 
     const articles: FilteredNews[] = response.data.articles;
 

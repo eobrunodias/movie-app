@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
-app.get("/news", async (req, res) => {
+app.get("/api/news", async (req, res) => {
   try {
     const API_BASE_URL = process.env.API_BASE_URL;
     const API_KEY = process.env.API_KEY;
