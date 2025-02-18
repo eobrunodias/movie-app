@@ -7,7 +7,7 @@
   ],
   "routes": [
     {
-      "src": "/news",
+      "src": "/api/news",
       "dest": "/server/index.js"
     }
   ]

@@ -32,3 +32,5 @@ app.get("/news", async (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server on in port: ${PORT}`));
+
+export default app;
