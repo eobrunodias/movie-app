@@ -1,8 +1,8 @@
-import { New } from "./appwrite";
+import { FilteredNews } from "./appwrite";
 
 export interface ApiResponse {
   data: {
     totalArticles: number;
-    articles: New[];
+    articles: FilteredNews[];
   };
 }
