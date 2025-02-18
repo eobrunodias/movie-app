@@ -81,8 +81,6 @@ export default function Home({ className }: HomeProps) {
 
     const lastUpdated = config?.lastUpdated;
 
-    const dataNews = await fetchNews();
-    console.log(dataNews);
     if (dataStorage.length < 10) {
       const newsData = await getNews();
 
