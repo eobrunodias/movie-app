@@ -32,7 +32,7 @@ export default function Favorites({ className }: FavoritesProps) {
 
   return (
     <div
-      className={`${className} grid gap-12 place-items-center h-screen  w-screen grid-cols-[repeat(auto-fit,minmax(230px,1fr))] sm:!grid-cols-[repeat(auto-fit,minmax(400px,1fr))]`}
+      className={`${className} grid gap-12 place-items-center h-screen w-screen grid-cols-[repeat(auto-fit,minmax(230px,1fr))] sm:!grid-cols-[repeat(auto-fit,minmax(400px,1fr))]`}
     >
       {favorites.length === 0 && (
         <p className="text-colorfontbutton">No favorites saved</p>
